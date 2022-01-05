@@ -1,0 +1,24 @@
+{% extends 'blog/layout.html' %}
+
+
+{% block content %}
+<ul class="main">
+    <li><h2>Блогер: {{title}}</h2></li>
+    <li><h3>О блогере: {{ title.bio }}</h3></li>
+    <li>{% for b in blogger %}
+        <a href="{% url 'show_blog' b.slug %}">{{ b }}</a><br><br>
+
+    {% endfor %}</li>
+</ul>
+{#    {% for b in bloger %}#}
+{#        <ul class="main">#}
+{#                <li><p>О блогере:</p> <br></li>#}
+{#                <li>{{ b.author.bio }}</li>#}
+{#                <br><p>Список блогов:</p>#}
+{#                <li><a href="{% url 'show_blog' b.slug %}">{{ b.title }}</a></li>#}
+{##}
+{#        </ul>#}
+{#    {% endfor %}#}
+
+
+{% endblock content %}

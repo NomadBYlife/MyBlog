@@ -1,0 +1,16 @@
+{% extends 'blog/layout.html' %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+
+    <form action="" method="post">
+    {% csrf_token %}
+            <div class="form_errors"><ul>{{ form.non_field_errors }}</ul></div>
+    {% for f in form %}
+            <p><span class="form_label">{{ f.label }}:</span>{{ f }} </p>
+        {% endfor %}
+    <button type="submit">Sign in</button>
+    </form>
+    <br>
+    <a href="{% url "social:begin" "github" %}"><img src="../../media/25231.png" width="50" height="50"></a>
+{% endblock %}

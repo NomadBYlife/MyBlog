@@ -1,0 +1,45 @@
+{% extends 'blog/layout.html' %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+    {% for b in blogs %}
+    <ul class="main">
+    <li><a href="{% url 'show_blog' b.slug %}">{{ b.title }}</a>
+        ({{ b.date_created|date:"d-m-Y H:i:s" }}) - <a href="{% url 'blogerview' b.author.slug %}">{{ b.author }}</a></li>
+    </ul>
+    {% endfor %}
+
+    <div class="paginate">
+    <ul>
+    {% if page_obj.has_previous %}
+        <li><a href="?page=1">1</a></li>
+        <li><a href="?page={{ page_obj.previous_page_number }}">&lt</a></li>
+    {% endif %}
+    {% if page_obj.has_other_pages %}
+        {% for p in paginator.page_range %}
+            {% if page_obj.number == p %}
+            <li class="page_select">{{ p }}</li>
+            {% elif p >= page_obj.number|add:-1 and p <= page_obj.number|add:1 %}
+            <li><a href="?page={{ p }}">{{ p }}</a></li>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    {% if page_obj.has_next %}
+        <li><a href="?page={{ page_obj.next_page_number }}">&gt</a></li>
+    {% endif %}
+    {% if page_obj.has_other_pages  %}
+        <li class="middle">из</li>
+        <li><a href="?page={{ paginator.num_pages }}">{{ paginator.num_pages }}</a></li>
+    {% endif %}
+    </ul>
+</div>
+        {% for b in bloggers %}
+        <ul class="main">
+        <li><a href="{% url 'blogerview' b.slug %}">{{ b }}</a></li>
+        </ul>
+        {% endfor %}
+
+{% endblock %}
+
+
