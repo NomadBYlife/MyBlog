@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django import forms
-from django.forms import ModelForm, Textarea, Select
+from django.forms import ModelForm, Textarea, Select, TextInput, FileInput
 
 from blog.models import Comment, Blog
 
@@ -22,7 +22,7 @@ class AddComent(ModelForm):
 class AddBlog(ModelForm):
     class Meta:
         model = Blog
-        fields = ['title', 'discription']
+        fields = ['title', 'discription', 'image']
         widgets = {
             "title": Textarea(attrs={
                 'class': 'form_comment',
@@ -30,7 +30,11 @@ class AddBlog(ModelForm):
             }),
             'discription': Textarea(attrs={
                 'class': 'form-comment',
-                'placeholder': 'Blog content'})}
+                'placeholder': 'Blog content'}),
+
+            'image': FileInput(attrs={
+                'class': 'form-comment',
+                'placeholder': 'Image'})}
 
 
 class RegisterUserForm(UserCreationForm):
