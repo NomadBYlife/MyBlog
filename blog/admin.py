@@ -6,7 +6,7 @@ from blog.models import *
 
 class BlogerAdmin(admin.ModelAdmin):
     # prepopulated_fields = {'slug': ('pseudonym',)}
-    list_display = ('id', 'pseudonym', 'slug', 'first_name', 'last_name', 'bio', 'age','is_published')
+    list_display = ('id', 'pseudonym', 'slug', 'first_name', 'last_name', 'bio', 'age', 'is_published')
     list_display_links = ('id', 'pseudonym')
     search_fields = ('id', 'pseudonym', 'first_name', 'last_name')
     list_editable = ('is_published',)
@@ -27,6 +27,11 @@ class CommentAdmin(admin.ModelAdmin):
     list_editable = ('is_published',)
 
 
+class ModelForTestAdmin(admin.ModelAdmin):
+    list_display = ('id', 'title')
+
+
 admin.site.register(Blog, BlogAdmin)
 admin.site.register(Bloger, BlogerAdmin)
-admin.site.register(Comment,CommentAdmin)
+admin.site.register(Comment, CommentAdmin)
+admin.site.register(ModelForTest, ModelForTestAdmin)

@@ -85,3 +85,7 @@ class Comment(models.Model):
 
     def get_absolute_url(self):
         return reverse('show_blog', kwargs={'slug':self.blog.slug})
+
+
+class ModelForTest(models.Model):
+    title = models.CharField(max_length=50, verbose_name='title')

@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -140,3 +141,14 @@ AUTHENTICATION_BACKENDS = (
 )
 SOCIAL_AUTH_GITHUB_KEY = '40afff9556fa5b1a4304'
 SOCIAL_AUTH_GITHUB_SECRET = 'd761653d848063a1eaad278a81a0b2850859f264'
+
+# Конфигурация Channels
+ASGI_APPLICATION = "MyBlog.asgi.application"
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
